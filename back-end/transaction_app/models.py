@@ -6,4 +6,4 @@ from category_app.models import Category
 class Transaction(models.Model):
     account = models.ForeignKey(User, on_delete=models.CASCADE, related_name="transaction")
     amount = models.BigIntegerField()
-    category = models.ForeignKey(Category, related_name="transaction")
+    category = models.ManyToManyField(Category, related_name="transaction")
