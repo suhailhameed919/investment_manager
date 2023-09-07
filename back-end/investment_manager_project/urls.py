@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from api_app.views import Plaid_Api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('user_app.urls')), 
+    path('api/create_link_token', Plaid_Api.as_view(), name="create_link_token"),
 
 ]
