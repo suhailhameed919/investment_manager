@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wse5=_$1kpl-t5(#(xl@ctis_$4-rln#lytb4wy^3sj4o0rkv%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -47,9 +47,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,6 +132,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_app.User'
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-]
+#below changes have not been pushed, (commited)
+
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:5173',
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
