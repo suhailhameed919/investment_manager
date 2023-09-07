@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'user_app',
     'transaction_app',
-    'category_app',
     'api_app',
     'rest_framework.authtoken',
+    'corsheaders',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,3 +131,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_app.User'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
