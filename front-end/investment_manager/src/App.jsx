@@ -1,35 +1,81 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//need use effect that sends request requiring auth, if fails, you'll know you don't have token (in curriculum)
 
-function App() {
-  const [count, setCount] = useState(0)
+
+
+import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import Navbar from "./components/Navbar";
+import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { api } from "./utilities";
+
+
+export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  // const [savedPredictions, setSavedPredictions] = useState([]);
+  const navigate = useNavigate();
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    whoAmI();
+  }, []);
+  
+
+  const whoAmI = async () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      api.defaults.headers.common["Authorization"] = `Token ${token}`;
+      let response = await api.get("users/info/");
+      if (response.data.username) {
+        setUser(response.data);
+        navigate("/home");
+        
+      }
+    } else {
+      // If no token is found, navigate to the login page
+      navigate("/login");
+    }
+  };
+
+
+
+
+
+
+
+  
+  const handleLogin = (username) => {
+    setLoggedIn(true);
+    setUsername(username);
+    
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setUsername("");
+    setSavedPredictions([]); // Clearing saved predictions when log out
+  };
+
+  // const handleSavePrediction = (prediction) => {
+  //   setSavedPredictions([...savedPredictions, prediction]);
+  // };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar loggedIn={loggedIn} username={username} onLogout={handleLogout} />
+      <Outlet
+        context={{
+          loggedIn,
+          username,
+          // savedPredictions,
+          handleLogin,
+          // handleSavePrediction,
+        }}
+      />
     </>
-  )
+  );
 }
 
-export default App
+
