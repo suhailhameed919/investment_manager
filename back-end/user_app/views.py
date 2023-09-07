@@ -12,7 +12,6 @@ from rest_framework.status import (
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from user_app.serializers import UserSerializer
 
 # Create your views here.
 class Sign_Up(APIView):
