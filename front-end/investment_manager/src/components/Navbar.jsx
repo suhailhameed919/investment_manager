@@ -42,7 +42,7 @@ export default function CustomNavbar() {
     <>
       {!isLoginPage && !isSignupPage && (
         <Navbar bg="info" variant="light" expand="lg">
-          <Container>
+          <Container fluid>
             <Navbar.Brand as={Link} to="/home">
               Investment Manager
             </Navbar.Brand>
