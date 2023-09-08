@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wse5=_$1kpl-t5(#(xl@ctis_$4-rln#lytb4wy^3sj4o0rkv%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -132,9 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_app.User'
 
-#below changes have not been pushed, (commited)
-
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:5173',
-# ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173', 
+]
