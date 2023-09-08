@@ -6,10 +6,10 @@ from django.contrib.auth.models import Group, Permission
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    name = models.CharField() 
-    annual_salary = models.BigIntegerField()
-    bank_balance = models.BigIntegerField()
-    debt = models.BigIntegerField()
+    # name = models.CharField() 
+    annual_salary = models.BigIntegerField(default=50000)
+    bank_balance = models.BigIntegerField(default=50000)
+    debt = models.BigIntegerField(default=0)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username']
     

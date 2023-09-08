@@ -14,7 +14,6 @@ import { api } from "./utilities";
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  // const [savedPredictions, setSavedPredictions] = useState([]);
   const navigate = useNavigate();
   const [user, setUser] = useState("");
 
@@ -55,12 +54,10 @@ export default function App() {
   const handleLogout = () => {
     setLoggedIn(false);
     setUsername("");
-    setSavedPredictions([]); // Clearing saved predictions when log out
+    setSavedPredictions([]); // this clear saved predictions when log out
   };
 
-  // const handleSavePrediction = (prediction) => {
-  //   setSavedPredictions([...savedPredictions, prediction]);
-  // };
+  
 
   return (
     <>
@@ -69,9 +66,7 @@ export default function App() {
         context={{
           loggedIn,
           username,
-          // savedPredictions,
           handleLogin,
-          // handleSavePrediction,
         }}
       />
     </>
