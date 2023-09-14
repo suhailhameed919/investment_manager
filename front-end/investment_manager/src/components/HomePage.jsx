@@ -1,10 +1,26 @@
 import React, { useState, useEffect, PureComponent } from "react";
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { api } from "../utilities";
-
+import axios from "axios";
 
 
 export default function HomePage() {
+  
+  const [linkToken, setLinkToken] = useState(null);
+
+  const handlePairBankClick = () => {
+    api.post("plaid/create_link_token/")
+      .then((response) => {
+        const { link_token } = response.data;
+        setLinkToken(link_token); //storing link token in state
+        // Use the link_token to initiate Plaid Link in your component
+      })
+      .catch((error) => {
+        console.error("Error creating link token:", error);
+      });
+  };
+  
+
 
 
   const pieData = [
@@ -33,8 +49,16 @@ export default function HomePage() {
   return (
     <>
   <div className="main-page-contents">
+    
+  {linkToken ? (
+    <div>
+      <p>Link token retrieved</p>
+      {/* I need to Render the Plaid Link component here */}
+    </div>
+  ) : (
 
-    <button>pair your bank with plaid</button>
+    <button onClick={handlePairBankClick}>Pair your bank with Plaid</button>
+  )}
         <PieChart width={400} height={400}>
           <Pie
             dataKey="value"
