@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
 }
 
 h1 {
@@ -66,4 +67,9 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.main-page-contents {
+  width: 100%;
+
 }

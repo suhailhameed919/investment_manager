@@ -11,16 +11,25 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from pathlib import Path
+env_file = Path(__file__).resolve().parent.parent / '.env'
+
+PLAID_CLIENT_ID = config('PLAID_CLIENT_ID', default='', cast=str)
+PLAID_SECRET = config('PLAID_SECRET', default='', cast=str)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-wse5=_$1kpl-t5(#(xl@ctis_$4-rln#lytb4wy^3sj4o0rkv%'
+# client: 64ee4fe5e3d2fa00148bf9a2
+
+# Secret: d9c7522f6d0ca5d2d28f267c141a37
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
